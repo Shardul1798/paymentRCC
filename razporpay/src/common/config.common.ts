@@ -16,6 +16,8 @@ export let appConfig = {
     API_KEY: process.env.DEV_API_KEY,
     AUTH_USER: process.env.DEV_USER,
     AUTH_PASSWORD: process.env.DEV_PASSWORD,
+    SALT: process.env.SALT,
+    SECRET_CRYPTR: process.env.DEV_SECRET_KEY_CRYPTR,
   },
 };
 
@@ -31,10 +33,10 @@ switch (process.env.NODE_ENV) {
         API_KEY: process.env.DEV_API_KEY,
         AUTH_USER: process.env.DEV_USER,
         AUTH_PASSWORD: process.env.DEV_PASSWORD,
+        SALT: process.env.SALT,
+        SECRET_CRYPTR: process.env.DEV_SECRET_KEY_CRYPTR,
       },
     };
-    console.log("APP Config =====>", appConfig);
-
     break;
   case APP_CONSTANTS.LOCAL:
     dotenv.config({ path: ".env.local" });
@@ -47,9 +49,10 @@ switch (process.env.NODE_ENV) {
         API_KEY: process.env.DEV_API_KEY,
         AUTH_USER: process.env.DEV_USER,
         AUTH_PASSWORD: process.env.DEV_PASSWORD,
+        SALT: process.env.SALT,
+        SECRET_CRYPTR: process.env.DEV_SECRET_KEY_CRYPTR,
       },
     };
-    console.log("Local App Config =====>", appConfig);
     break;
   case APP_CONSTANTS.QA:
     dotenv.config({ path: ".env.qa" });
@@ -62,6 +65,8 @@ switch (process.env.NODE_ENV) {
         API_KEY: process.env.STAG_API_KEY,
         AUTH_USER: process.env.QA_USER,
         AUTH_PASSWORD: process.env.QA_PASSWORD,
+        SALT: process.env.SALT,
+        SECRET_CRYPTR: process.env.QA_SECRET_KEY_CRYPTR,
       },
     };
     break;

@@ -1,7 +1,8 @@
 import bodyParser from "body-parser";
 import cors from "cors";
 import express from "express";
-import ApiRoutes from './routes/v1/index';
+import ApiRoutes from "./routes/v1/index";
+import { ErrorHandler } from "./middlewares/handlers.middleware";
 
 class Application {
   private app: express.Application;
@@ -16,7 +17,7 @@ class Application {
 
   async initApp() {
     try {
-      console.log("inside init")
+      console.log("inside init");
       this.app.use(cors());
       this.app.use(express.json());
       this.app.use(bodyParser.json());
@@ -41,8 +42,8 @@ class Application {
 
   useRoutes() {
     this.app.use(ApiRoutes.path, ApiRoutes.instance);
+    this.app.use(ErrorHandler);
   }
 }
-
 
 export default new Application();

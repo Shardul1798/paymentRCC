@@ -3,20 +3,24 @@ import BaseRoute from "../../base/base.routes";
 import middlewares from "../../../middlewares";
 import { paymentController } from "../../../controllers/v1/payments/payments.controller";
 
+// Class for handling payment-related routes, extending the BaseRoute class
 class paymentRoutes extends BaseRoute {
-  public path: string;
+  public path: string;    // Define the path for the payment routes
 
   constructor(path: string) {
     super();
     this.path = path;
   }
 
+  // Getter method for obtaining the instance of the Router with initialized routes
   get instance(): Router {
     this.initRoutes();
     return this.router;
   }
 
+  // Method to initialize payment-related routes
   initRoutes() {
+    // Route for creating a payment order
     this.router.post(
       "",
       middlewares.basicAuth.authentication,
@@ -26,6 +30,7 @@ class paymentRoutes extends BaseRoute {
       }
     );
 
+    // Route for handling payment verification
     this.router.post(
       "/verification",
       // middlewares.basicAuth.authentication,
@@ -34,6 +39,7 @@ class paymentRoutes extends BaseRoute {
       }
     );
 
+    // Route for obtaining the Razorpay key id
     this.router.get(
       "/get-key",
       middlewares.basicAuth.authentication,

@@ -7,6 +7,7 @@ export class PaymentController extends BaseController {
     super();
   }
 
+  // Handles the creation of a payment order
   async createOrder(req: Request, res: Response, next: NextFunction) {
     try {
       const result = await _paymentService.createPaymentOrder(req.body);
@@ -18,6 +19,7 @@ export class PaymentController extends BaseController {
     }
   }
 
+  // Retrieves a Razorpay key, for payment integration at Frontend.
   async getRPKey(req: Request, res: Response, next: NextFunction) {
     try {
       const key = await _paymentService.fetchKey();
@@ -33,6 +35,7 @@ export class PaymentController extends BaseController {
     }
   }
 
+  // Handles payment verification and redirects to payment success page
   async paymentVerification(req: Request, res: Response, next: NextFunction) {
     try {
       const resp:any = await _paymentService.validateSignature(req.body);
@@ -45,4 +48,5 @@ export class PaymentController extends BaseController {
   }
 }
 
-export const paymentController = new PaymentController();
+
+export const paymentController = new PaymentController();   //Creates a single instance of the controller for use throughout the application.
